@@ -1,10 +1,10 @@
 {
   "name": "express-mesto",
   "version": "1.0.0",
-  "description": "`/public` — статика, полученная в результате билда фронтенд-приложения на Реакте  \r `/data` — JSON-файлы для временной эмуляции работы с базой данных  \r `/routes` — папка с файлами роутера",
-  "main": "index.js",
+  "description": "/routes` — папка с файлами роутера",
+  "main": "app.js",
   "scripts": {
-    "start": "npm run start",
+    "start": "node app.js",
     "dev": "nodemon app.js",
     "lint": "npx eslint"
   },

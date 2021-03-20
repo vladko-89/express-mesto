@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/newline-after-import
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -12,12 +13,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 mongoose.connect('mongodb://localhost:27017/mestodb', {
   useNewUrlParser: true,
   useCreateIndex: true,
-  useFindAndModify: false
+  useFindAndModify: false,
 });
 
 app.use((req, res, next) => {
   req.user = {
-    _id: '6053991f0e21c74a84b16346'
+    _id: '6053991f0e21c74a84b16346',
   };
 
   next();
@@ -26,5 +27,5 @@ app.use((req, res, next) => {
 app.use(router);
 
 app.listen(PORT, () => {
-  console.log(`OK PORT=${PORT} is opened`)
-})
+
+});
