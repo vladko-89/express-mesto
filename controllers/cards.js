@@ -67,6 +67,7 @@ module.exports.dislikeCard = (req, res) => {
   ).then((card) => {
     if (!card) {
       res.status(404).send({ message: 'Карточка с указанным _id не найдена!' });
+    } else {
       res.send(card);
     }
   })
