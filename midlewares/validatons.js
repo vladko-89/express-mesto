@@ -74,7 +74,6 @@ const validateLogin = celebrate({
   }),
   headers: Joi.object().keys({
     'content-type': Joi.string().valid('application/json').required(),
-    authorization: Joi.string().min(2).max(200).required(),
   }).unknown(),
 });
 
