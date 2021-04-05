@@ -1,7 +1,7 @@
 const Card = require('../models/card');
 const PathNotFoundError = require('../errors/path-non-found-error');
 const BadRequestError = require('../errors/bad-request-error');
-const ForbiddenError = require('../errors/bad-request-error');
+const ForbiddenError = require('../errors/forbidden-error');
 
 module.exports.getCards = (req, res, next) => {
   Card.find({})
@@ -27,9 +27,9 @@ module.exports.deleteCardByID = (req, res, next) => {
   Card.findById(req.params.id)
     .then((card) => {
       if (!card) {
-        next(new PathNotFoundError('Карточка с указанным _id не найдена!'));
+        throw new PathNotFoundError('Карточка с указанным _id не найдена!');
       } else if (!card.owner.equals(req.user._id)) {
-        next(new ForbiddenError('Доступ ограничен! Нельзя удалять чужие карточки!'));
+        throw new ForbiddenError('Доступ ограничен! Нельзя удалять чужие карточки!');
       } else {
         Card.findByIdAndRemove(req.params.id)
           // eslint-disable-next-line no-shadow
@@ -39,6 +39,7 @@ module.exports.deleteCardByID = (req, res, next) => {
       }
     })
     .catch((err) => {
+      console.log(err);
       if (err.kind === 'ObjectId') {
         next(new BadRequestError('Переданы некорректные данные при удалении карточки!'));
       } else {
